@@ -25,7 +25,7 @@ class UserResource extends JsonResource
             "avatar"            => display_image_by_model($this,"avatar"),
             // 'account_verified'  => (is_null($this->phone_verified_at)) ? false:true,
             'subscription'      => [
-                "status"        => (empty($data)) ? false : true,
+"status"        => true,
                 "details"       => $data,
             ]
         ];
@@ -33,17 +33,15 @@ class UserResource extends JsonResource
     }
 
     private function showSubscription() {
-        $item = $this->subscriptions()->where('active',1)->first();
-        if(is_null($item)) {
-            return [];
-        }
+$item = $this->subscriptions()->first();
+
         return [
-            'id'                => (int)$item->subscription->id ?? 0,
-            'name'              => $item->subscription->name ?? '',
-            'start'             => $item->start ?? '',
-            'end'               => $item->end ?? '',
-            'price'             => (float)$item->price ?? 0,
-            'payment_status'    => $item->payment_status ?? '',
+'id'                => ($item && $item->subscription) ? (int)$item->subscription->id : 0,
+'name'              => ($item && $item->subscription) ? $item->subscription->name : '',
+'start'             => ($item) ? $item->start : '',
+'end'               => ($item) ? $item->end : '',
+'price'             => ($item) ? (float)$item->price : 0,
+'payment_status'    => ($item) ? $item->payment_status : '',
         ];
     }
 }

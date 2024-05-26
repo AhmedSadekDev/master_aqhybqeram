@@ -31,5 +31,6 @@ class RegisterRequest extends JsonFormRequest
             'password'   => 'required|min:8',
             'devices_token'  => 'required',
         ];
+
     }
 }

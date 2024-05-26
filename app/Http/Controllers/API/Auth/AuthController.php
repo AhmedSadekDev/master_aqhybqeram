@@ -111,7 +111,7 @@ class AuthController extends Controller
     //         ->build();
     // }
 
-    public function register(RegisterRequest $request) {
+public function register(RegisterRequest $request) {
         $user = \Auth::user();
         // if($user->user_type == User::TYPE_ADMIN) {
         //     return (new API)->isError(__("Oops, This Account Can't be access to this area"))->build();
