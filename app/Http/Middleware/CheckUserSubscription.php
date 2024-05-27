@@ -12,14 +12,14 @@ class CheckUserSubscription
 
     public function handle(Request $request, Closure $next, ...$guards)
     {
-        if(request()->is('*api*')) {
-            if(auth()->check()) {
-                $item = auth()->user()->subscriptions()->where('active',1)->first();
-                if(is_null($item)) {
-                    return (new API())->isError(__('برجاء الإشتراك أولا'))->build();
-                }
-            }
-        }
+        // if(request()->is('*api*')) {
+        //     if(auth()->check()) {
+        //         $item = auth()->user()->subscriptions()->where('active',1)->first();
+        //         if(is_null($item)) {
+        //             return (new API())->isError(__('برجاء الإشتراك أولا'))->build();
+        //         }
+        //     }
+        // }
         return $next($request);
     }
 
