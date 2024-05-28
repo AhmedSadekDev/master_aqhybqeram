@@ -136,7 +136,7 @@ if (!function_exists('imageUpload')) {
         if(!is_dir($destinationPath)) {
             mkdir($destinationPath, 0755, true);
         }
-        $imageName = time().'.'.$image->extension();
+        $imageName = random_int(11111,99999).'.'.$image->extension();
         $image->move($destinationPath, $imageName);
         return $mm.'/'.$imageName;
     }
